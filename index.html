@@ -23,7 +23,7 @@ const srs = da.map(row => {
     return {
         name: row[0],
         color: row[1],
-        data: row.slice(2).map(v => v * 1000000)
+        data: row.slice(2).map(v => v * 1000000),
     }
 })
 
@@ -58,6 +58,13 @@ Highcharts.chart('reklama_cd', {
         enabled: false
     },
     plotOptions: {
+        series: {
+            states: {
+                inactive: {
+                    opacity: 1,
+                },
+            },
+        },
         column: {
             pointPadding: 0.2,
             borderWidth: 0,
