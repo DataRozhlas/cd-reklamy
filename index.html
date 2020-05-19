@@ -60,8 +60,13 @@ Highcharts.chart('reklama_cd', {
     plotOptions: {
         column: {
             pointPadding: 0.2,
-            borderWidth: 0
-        }
+            borderWidth: 0,
+            events: {
+                legendItemClick: function () {
+                    return false
+                }
+            }
+        },
     },
     series: srs
 })
