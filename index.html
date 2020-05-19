@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<meta charset="utf-8"/>
+<meta 
+     name='viewport' 
+     content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' 
+/>
+
+<div id="reklama_cd"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/8.1.0/highcharts.js"></script>
+<script>
+const da = [
+  ["Mafra", '#de2d26',10.6,26.4,29.4,28.8,17.1],
+  ["TV NOVA", '#ff7f00',6.3,5.4,10.1,16.3,9.5],
+  ["Czech News Center", '#3182bd',4.6,3.5,3.1,4.4,1.7],
+  ["Česká televize", '#31a354',2.3,0.035,3.3,7.1,5.2],
+  ["Economia", '#756bb1',6.4,2.9,2.5,3.9,0.245]
+]
+
+const srs = da.map(row => {
+    return {
+        name: row[0],
+        color: row[1],
+        data: row.slice(2).map(v => v * 1000000)
+    }
+})
+
+Highcharts.chart('reklama_cd', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Média, ve kterých si ČD platily reklamu'
+    },
+    subtitle: {
+        text: 'Zdroj: interní podklady pro vedení společnosti ČD v oblasti marketingu a poradenství'
+    },
+    xAxis: {
+        categories: ['2015', '2016', '2017', '2018', '2019'],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'platby v Kč'
+        }
+    },
+    tooltip: {
+        shared: true,
+        useHTML: true
+    },
+    legend: {
+        enabled: true
+    },
+    credits: {
+        enabled: false
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: srs
+})
+</script>
